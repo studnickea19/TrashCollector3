@@ -2,27 +2,38 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>Welcome to Trash Collector</h1>
-    <p class="lead">Use this platform to manage your trash pickups</p>
-    <!--<p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>-->
-</div>
+
+
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Schedule a Pickup</h2>
-        <p>Use this function to schedule weekly pickups and create additional pickup requests.</p>
-        <p><a href="/Pickups/Create" class="btn btn-default">Schedule &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Suspend Service</h2>
-        <p>Click the button below to suspend your trash collection service.</p>
-        <p><a href="" class="btn btn-default">Suspend &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Add an Address</h2>
-        <p>Moving? Buying a summer getaway cabin? Add a pickup address to your account here.</p>
-        <p><a href="/Addresses/Create" class="btn btn-default">Add &raquo;</a></p>
+    <div class="jumbotron">
+        <h1>Welcome to Trash Collector</h1>
+        <p class="lead">Use this platform to manage your trash pickups</p>
     </div>
 </div>
 
+@if (User.Identity.IsAuthenticated)
+{
+    if (User.IsInRole("Customer"))
+    {
+        <div class="jumbotron">
+            <h1>Welcome to Trash Collector</h1>
+            <p class="lead">Use this platform to manage your trash pickups</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Schedule a Pickup</h2>
+            <p>Use this function to schedule weekly pickups and create additional pickup requests.</p>
+            <p><a href="/Pickups/Create" class="btn btn-default">Schedule &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Suspend Service</h2>
+            <p>Click the button below to suspend your trash collection service.</p>
+            <p><a href="" class="btn btn-default">Suspend &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Add an Address</h2>
+            <p>Moving? Buying a summer getaway cabin? Add a pickup address to your account here.</p>
+            <p><a href="/Addresses/Create" class="btn btn-default">Add &raquo;</a></p>
+        </div>
+    }
+}

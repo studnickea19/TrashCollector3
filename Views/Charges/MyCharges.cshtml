@@ -25,10 +25,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                @Html.DisplayFor(modelItem => item.Pickup.PickUpDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pickup.PickupID)
+                @Html.DisplayFor(modelItem => item.Pickup.CustomerAddress.Address.FullAddress)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ChargeAmount)

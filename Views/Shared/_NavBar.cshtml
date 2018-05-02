@@ -10,13 +10,32 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Addresses", "Index", "Addresses")</li>
-                <li>@Html.ActionLink("Pickups", "MyPickups", "Pickups")</li>
-                
-                <li>@Html.ActionLink("Charges", "MyCharges", "Charges")</li>
+                <li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Employee"))
+                        {
+                        <li>@Html.ActionLink("Customers", "EmployeeCustomers", "Customers")</li> @*Employee Home*@
+                        <li>@Html.ActionLink("Pickups", "EmployeePickups", "Pickups")</li> @*Employee Pickups*@
+                        }
+                    }
+                    </li>
+                    <li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Customer"))
+                            {
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Addresses", "Index", "Addresses")</li>
+                            <li>@Html.ActionLink("Pickups", "MyPickups", "Pickups")</li>
+                            <li>@Html.ActionLink("Charges", "MyCharges", "Charges")</li>
+                            }
+                        }
+                    </li>
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
     </div>
 </div>
+
+

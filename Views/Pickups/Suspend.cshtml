@@ -1,0 +1,16 @@
+﻿@model TrashCollector3.Models.Pickup
+@{
+    ViewBag.Title = "Suspend";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Suspend Service</h2>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.PickupSuspended, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.PickUpDate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.PickUpDate, "", new { @class = "text-danger" })
+    </div>
+</div>
+

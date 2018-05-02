@@ -80,7 +80,7 @@ namespace TrashCollector3.Controllers
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
-                case SignInStatus.Success:
+                case SignInStatus.Success:                    
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -143,7 +143,9 @@ namespace TrashCollector3.Controllers
         {
             ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                             .ToList(), "Name", "Name");
+
             return View();
+            
         }
 
         //
@@ -168,6 +170,16 @@ namespace TrashCollector3.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     return RedirectToAction("Index", "Home");
+                    //if (User.IsInRole("Employee"))
+                    //{
+                    //    Employee employee = new Employee();
+                    //    return RedirectToAction("Create", "employee");
+                    //}
+                    //else if (User.IsInRole("Customer"))
+                    //{
+                    //    Customer customer = new Customer();
+                    //    return RedirectToAction("Create", "customer");
+                    //}
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                           .ToList(), "Name", "Name");

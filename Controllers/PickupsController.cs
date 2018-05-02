@@ -14,7 +14,13 @@ namespace TrashCollector3.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        
+        //GET: Employee pickups
+        public ActionResult EmployeePickups(Customer customer)
+        {
+            var pickups = db.Customers.Include(p => p.PickUps);
+            return View();
+        }
+
         //GET: Customer Pickups
         public ActionResult MyPickups(Customer customer)
         {
