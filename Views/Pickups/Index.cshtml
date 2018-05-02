@@ -1,22 +1,19 @@
-﻿@model IEnumerable<TrashCollector2.Models.Pickup>
+﻿@model IEnumerable<TrashCollector3.Models.Pickup>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Pickups</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="/Pickups/Create" class="btn btn-default">Create New Pickup</a>
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerAddress.CustomerAddressID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickUpArea.AreaID)
+            @Html.DisplayNameFor(model => model.CustomerAddress.Address.FullAddress)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PickUpDate)
@@ -32,6 +29,7 @@
         </th>
         <th></th>
     </tr>
+    @Html.
 
 @foreach (var item in Model) {
     <tr>

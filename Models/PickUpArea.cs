@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TrashCollector2.Models
+namespace TrashCollector3.Models
 {
     public class PickUpArea
     {

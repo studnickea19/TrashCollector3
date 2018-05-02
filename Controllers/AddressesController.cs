@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using TrashCollector2.Models;
 using TrashCollector3.Models;
 
 namespace TrashCollector3.Controllers

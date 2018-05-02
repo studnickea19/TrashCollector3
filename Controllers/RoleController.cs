@@ -5,10 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TrashCollector2.Models;
 using TrashCollector3.Models;
 
-namespace TrashCollector2.Controllers
+namespace TrashCollector3.Controllers
 {
     public class RoleController : Controller
     {

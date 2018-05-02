@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TrashCollector3.Models.Charge>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>My Charges</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pickup.PickUpDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pickup.CustomerAddress.Address.FullAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChargeAmount)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pickup.PickupID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChargeAmount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ChargeID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ChargeID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ChargeID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -3,8 +3,6 @@ using Owin;
 using System.Data;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin;
-using Owin;
 using TrashCollector3.Models;
 
 [assembly: OwinStartupAttribute(typeof(TrashCollector3.Startup))]

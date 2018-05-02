@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using TrashCollector2.Models;
 using TrashCollector3.Models;
 
 namespace TrashCollector3.Controllers
@@ -14,6 +13,13 @@ namespace TrashCollector3.Controllers
     public class ChargesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        //GET: Customer Pickups
+        public ActionResult MyCharges(Customer customer)
+        {
+            var pickups = db.Customers.Include(c => c.Charges);
+            return View();
+        }
 
         // GET: Charges
         public ActionResult Index()

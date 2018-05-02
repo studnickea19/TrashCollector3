@@ -30,18 +30,18 @@ namespace TrashCollector3.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<TrashCollector2.Models.Address> Addresses { get; set; }
+        public System.Data.Entity.DbSet<TrashCollector3.Models.Address> Addresses { get; set; }
 
-        public System.Data.Entity.DbSet<TrashCollector2.Models.Charge> Charges { get; set; }
+        public System.Data.Entity.DbSet<TrashCollector3.Models.Charge> Charges { get; set; }
 
-        public System.Data.Entity.DbSet<TrashCollector2.Models.Customer> Customers { get; set; }
+        public System.Data.Entity.DbSet<TrashCollector3.Models.Customer> Customers { get; set; }
 
-        public System.Data.Entity.DbSet<TrashCollector2.Models.Pickup> Pickups { get; set; }
+        public System.Data.Entity.DbSet<TrashCollector3.Models.Pickup> Pickups { get; set; }
 
-        public System.Data.Entity.DbSet<TrashCollector2.Models.CustomerAddress> CustomerAddresses { get; set; }
+        public System.Data.Entity.DbSet<TrashCollector3.Models.CustomerAddress> CustomerAddresses { get; set; }
 
-        public System.Data.Entity.DbSet<TrashCollector2.Models.Employee> Employees { get; set; }
+        public System.Data.Entity.DbSet<TrashCollector3.Models.Employee> Employees { get; set; }
 
-        public System.Data.Entity.DbSet<TrashCollector2.Models.PickUpArea> PickUpAreas { get; set; }
+        public System.Data.Entity.DbSet<TrashCollector3.Models.PickUpArea> PickUpAreas { get; set; }
     }
 }
