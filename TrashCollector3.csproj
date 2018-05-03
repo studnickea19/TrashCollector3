@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201805031316111_AddedListOfAddressesToPickup.Designer.cs">
       <DependentUpon>201805031316111_AddedListOfAddressesToPickup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805031431411_AddedZipcodePropertyToPickUpArea.cs" />
+    <Compile Include="Migrations\201805031431411_AddedZipcodePropertyToPickUpArea.Designer.cs">
+      <DependentUpon>201805031431411_AddedZipcodePropertyToPickUpArea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -352,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805031316111_AddedListOfAddressesToPickup.resx">
       <DependentUpon>201805031316111_AddedListOfAddressesToPickup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805031431411_AddedZipcodePropertyToPickUpArea.resx">
+      <DependentUpon>201805031431411_AddedZipcodePropertyToPickUpArea.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

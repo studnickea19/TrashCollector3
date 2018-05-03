@@ -12,7 +12,7 @@ namespace TrashCollector3.Models
         [Key]
         public int AreaID { get; set; }
 
-        //public List<Zipcodes> {get; set;}
+        public List<int> Zipcodes {get; set;}
         //If pickuparea.codelist.Contains(address.zipcode)
         //  do stuff
     }
