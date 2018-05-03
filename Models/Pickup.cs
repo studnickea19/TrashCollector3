@@ -36,6 +36,8 @@ namespace TrashCollector3.Models
 
         public bool OneTimePickup { get; set; }
 
+        public IEnumerable<Address> Addresses { get; set; }
+
         //Move To Controller
         //public string DisplayCompletion()
         //{

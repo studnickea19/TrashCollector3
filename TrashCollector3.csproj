@@ -214,6 +214,10 @@
     <Compile Include="Migrations\201805021928036_AnotherMigration.Designer.cs">
       <DependentUpon>201805021928036_AnotherMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805031316111_AddedListOfAddressesToPickup.cs" />
+    <Compile Include="Migrations\201805031316111_AddedListOfAddressesToPickup.Designer.cs">
+      <DependentUpon>201805031316111_AddedListOfAddressesToPickup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -345,6 +349,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805021928036_AnotherMigration.resx">
       <DependentUpon>201805021928036_AnotherMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805031316111_AddedListOfAddressesToPickup.resx">
+      <DependentUpon>201805031316111_AddedListOfAddressesToPickup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

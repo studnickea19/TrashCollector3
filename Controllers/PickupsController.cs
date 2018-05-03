@@ -52,9 +52,16 @@ namespace TrashCollector3.Controllers
         // GET: Pickups/Create
         public ActionResult Create()
         {
-            ViewBag.CustomerAddressID = new SelectList(db.CustomerAddresses, "CustomerAddressID", "CustomerAddressID");
-            ViewBag.AreaID = new SelectList(db.PickUpAreas, "AreaID", "AreaID");
-            return View();
+            //ViewBag.CustomerAddressID = new SelectList(db.CustomerAddresses, "CustomerAddressID", "CustomerAddressID");
+            //ViewBag.AreaID = new SelectList(db.PickUpAreas, "AreaID", "AreaID");
+            //return View();
+
+            var addresses = db.Addresses.ToList(); //create list of addresses
+            Pickup pickup = new Pickup()            //create new ppickup
+            {                                       //Pickups's list of addresses is equal to one created above
+                Addresses = addresses
+            };
+            return View(pickup);
         }
 
         // POST: Pickups/Create
@@ -64,18 +71,33 @@ namespace TrashCollector3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PickupID,CustomerAddressID,PickUpDate,AreaID,PickupCompleted,PickupSuspended,OneTimePickup")] Pickup pickup)
         {
-            if (ModelState.IsValid)
-            {
-                pickup.PickupCompleted = false;
-                pickup.PickupSuspended = false;
-                db.Pickups.Add(pickup);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    pickup.PickupCompleted = false;
+            //    pickup.PickupSuspended = false;
+            //    db.Pickups.Add(pickup);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
 
-            ViewBag.CustomerAddressID = new SelectList(db.CustomerAddresses, "CustomerAddressID", "CustomerAddressID", pickup.CustomerAddressID);
-            ViewBag.AreaID = new SelectList(db.PickUpAreas, "AreaID", "AreaID", pickup.AreaID);
-            return View(pickup);
+            //ViewBag.CustomerAddressID = new SelectList(db.CustomerAddresses, "CustomerAddressID", "CustomerAddressID", pickup.CustomerAddressID);
+            //ViewBag.AreaID = new SelectList(db.PickUpAreas, "AreaID", "AreaID", pickup.AreaID);
+            //return View(pickup);
+            if (pickup.PickupID == 0)              
+            {
+                db.Pickups.Add(pickup);   
+            }
+            else
+            {
+                var playerInDB = db.Pickups.Single(m => m.PickupID == pickup.PickupID); //
+                playerInDB.CustomerAddressID = pickup.CustomerAddressID;
+                playerInDB.PickUpDate = pickup.PickUpDate;
+                playerInDB.OneTimePickup = pickup.OneTimePickup;
+                playerInDB.PickupCompleted = false;
+                
+            }
+            db.SaveChanges();
+            return RedirectToAction("MyPickups", "PickupController");
         }
 
         // GET: Pickups/Edit/5
