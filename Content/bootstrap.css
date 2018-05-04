@@ -253,6 +253,7 @@ table {
   }
   thead {
     display: table-header-group;
+    justify-content: center;
   }
   tr,
   img {
@@ -1410,7 +1411,9 @@ table {
 }
 
 th {
-  text-align: left;
+  text-align: center;
+  justify-content: center;
+
 }
 
 .table {

@@ -18,13 +18,8 @@ namespace TrashCollector3.Controllers
         // GET: Addresses
         public ActionResult Index()
         {
-            string userID = User.Identity.GetUserId();
-            var user = db.Users.Where(u => u.Id == userID).FirstOrDefault();
-            var customer = db.Customers.Where(c => c.UserID == user.Id).FirstOrDefault();
-            var customerAddresses = db.Customers.Where(c => c.CustomerID == customer.CustomerID).Include(a => a.UserAddresses).FirstOrDefault();
-            var addresses = customerAddresses.UserAddresses;
-            var addressesFull = addresses.ToList();
-            return View(addressesFull);
+            
+            return View(db.Addresses.ToList());
         }
 
         // GET: Addresses/Details/5
@@ -42,6 +37,14 @@ namespace TrashCollector3.Controllers
             return View(address);
         }
 
+        public ActionResult MyAddresses()
+        {
+            string userID = User.Identity.GetUserId();  //get current userID
+            var user = db.Users.Where(u => u.Id == userID).FirstOrDefault();    //get user 
+            var customer = db.Customers.Where(c => c.UserID == user.Id).FirstOrDefault();   //get customer that matches user
+            List<Address> addresses = db.CustomerAddresses.Where(c => c.CustomerID == customer.CustomerID).Select(a => a.Address).ToList();
+            return View(addresses);
+        }
         // GET: Addresses/Create
         public ActionResult Create()
         {
@@ -53,17 +56,20 @@ namespace TrashCollector3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AddressID,StreetAddress,City,State,ZipCode")] Address address, Customer customer)
+        public ActionResult Create([Bind(Include = "AddressID,StreetAddress,City,State,ZipCode")] Address address)
         {
             if (ModelState.IsValid)
             {
                 db.Addresses.Add(address);
+                string userID = User.Identity.GetUserId();  //get current userID
+                var user = db.Users.Where(u => u.Id == userID).FirstOrDefault();    //get user 
+                var customer = db.Customers.Where(c => c.UserID == user.Id).FirstOrDefault();   //get customer that matches user
                 CustomerAddress addAddress = new CustomerAddress();
                 addAddress.AddressID = address.AddressID;
                 addAddress.CustomerID = customer.CustomerID;
                 db.CustomerAddresses.Add(addAddress);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyAddresses", "Addresses");
             }
 
             return View(address);

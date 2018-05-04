@@ -78,6 +78,13 @@ table{
 	border: 1px solid grey;
 	overflow: scroll;
 }
+
+th{
+    text-align: center;
+    justify-content: center;
+    background-color: lightgray;
+    border: 1px solid #aaaaaa;
+}
 tr{
 	width: 50%;
 	height: 50px;

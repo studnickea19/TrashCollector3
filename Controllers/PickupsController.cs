@@ -61,12 +61,10 @@ namespace TrashCollector3.Controllers
             //ViewBag.CustomerAddressID = new SelectList(db.CustomerAddresses, "CustomerAddressID", "CustomerAddressID");
             //ViewBag.AreaID = new SelectList(db.PickUpAreas, "AreaID", "AreaID");
             //return View();
-            string userID = User.Identity.GetUserId();
-            var user = db.Users.Where(u => u.Id == userID).FirstOrDefault();
-            var customer = db.Customers.Where(c => c.UserID == user.Id).FirstOrDefault();
-            var customerAddresses = db.Customers.Where(c => c.CustomerID == customer.CustomerID).Include(a => a.UserAddresses).FirstOrDefault();
-            var addresses = customerAddresses.UserAddresses;
-            var addressesFull = addresses.ToList(); //create list of addresses
+            string userID = User.Identity.GetUserId();  //get current userID
+            var user = db.Users.Where(u => u.Id == userID).FirstOrDefault();    //get user 
+            var customer = db.Customers.Where(c => c.UserID == user.Id).FirstOrDefault();   //get customer that matches user
+            List<Address> addresses = db.CustomerAddresses.Where(c => c.CustomerID == customer.CustomerID).Select(a => a.Address).ToList(); //create list of addresses
             Pickup pickup = new Pickup()            //create new ppickup
             {                                       //Pickups's list of addresses is equal to one created above
                 Addresses = addresses

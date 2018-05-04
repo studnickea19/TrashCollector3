@@ -50,8 +50,10 @@ namespace TrashCollector3.Controllers
         public ActionResult Create([Bind(Include = "CustomerID,FirstName,LastName,CustomerEmail,CustomerPassword,UserID")] Customer customer)
         {
             if (ModelState.IsValid)
-            {
+            {               
                 customer.UserID = User.Identity.GetUserId();
+                string userEmail = db.Users.Where(u => u.Id == customer.UserID).Select(u => u.Email).ToString();
+                customer.CustomerEmail = userEmail;
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
