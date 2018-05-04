@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -22,10 +23,15 @@ namespace TrashCollector3.Controllers
         }
 
         //GET: Customer Pickups
-        public ActionResult MyPickups(Customer customer)
+        public ActionResult MyPickups()
         {
-            var pickups = db.Customers.Include(p => p.PickUps);
-            return View();
+            string userID = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == userID).FirstOrDefault();
+            var customer = db.Customers.Where(c => c.UserID == user.Id).FirstOrDefault();
+            var customerPickups = db.Customers.Where(c => c.CustomerID == customer.CustomerID).Include(p => p.PickUps).FirstOrDefault();
+            var pickups = customerPickups.PickUps;
+            //var addresses = db.Customers.Include(a => a.UserAddresses);
+            return View(pickups);
         }
         // GET: Pickups
         public ActionResult Index()
@@ -55,8 +61,12 @@ namespace TrashCollector3.Controllers
             //ViewBag.CustomerAddressID = new SelectList(db.CustomerAddresses, "CustomerAddressID", "CustomerAddressID");
             //ViewBag.AreaID = new SelectList(db.PickUpAreas, "AreaID", "AreaID");
             //return View();
-
-            var addresses = db.Addresses.ToList(); //create list of addresses
+            string userID = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == userID).FirstOrDefault();
+            var customer = db.Customers.Where(c => c.UserID == user.Id).FirstOrDefault();
+            var customerAddresses = db.Customers.Where(c => c.CustomerID == customer.CustomerID).Include(a => a.UserAddresses).FirstOrDefault();
+            var addresses = customerAddresses.UserAddresses;
+            var addressesFull = addresses.ToList(); //create list of addresses
             Pickup pickup = new Pickup()            //create new ppickup
             {                                       //Pickups's list of addresses is equal to one created above
                 Addresses = addresses
@@ -74,9 +84,6 @@ namespace TrashCollector3.Controllers
             if (ModelState.IsValid)
             {
                 pickup.PickupCompleted = false;
-                var addressZip = db.Addresses.Where(a => a.AddressID == pickup.CustomerAddress.AddressID).Select(a => a.ZipCode).FirstOrDefault();
-                PickUpArea temp= db.PickUpAreas.Where(a => a.Zipcodes == addressZip).Single();
-                pickup.AreaID = temp.AreaID;
                 db.Pickups.Add(pickup);
                 db.SaveChanges();
                 return RedirectToAction("MyPickups", "PickupController");

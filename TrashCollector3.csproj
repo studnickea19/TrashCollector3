@@ -230,6 +230,14 @@
     <Compile Include="Migrations\201805041302564_UpdatingStuff.Designer.cs">
       <DependentUpon>201805041302564_UpdatingStuff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805041401328_AddingStuffBackIn.cs" />
+    <Compile Include="Migrations\201805041401328_AddingStuffBackIn.Designer.cs">
+      <DependentUpon>201805041401328_AddingStuffBackIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805041429129_AddedUserID.cs" />
+    <Compile Include="Migrations\201805041429129_AddedUserID.Designer.cs">
+      <DependentUpon>201805041429129_AddedUserID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -373,6 +381,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805041302564_UpdatingStuff.resx">
       <DependentUpon>201805041302564_UpdatingStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805041401328_AddingStuffBackIn.resx">
+      <DependentUpon>201805041401328_AddingStuffBackIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805041429129_AddedUserID.resx">
+      <DependentUpon>201805041429129_AddedUserID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

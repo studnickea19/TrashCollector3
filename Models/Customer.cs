@@ -40,5 +40,7 @@ namespace TrashCollector3.Models
                 return FirstName + " " + LastName;
             }
         }
+
+        public string UserID { get; set; }
     }
 }

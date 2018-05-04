@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,7 +18,13 @@ namespace TrashCollector3.Controllers
         // GET: Addresses
         public ActionResult Index()
         {
-            return View(db.Addresses.ToList());
+            string userID = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == userID).FirstOrDefault();
+            var customer = db.Customers.Where(c => c.UserID == user.Id).FirstOrDefault();
+            var customerAddresses = db.Customers.Where(c => c.CustomerID == customer.CustomerID).Include(a => a.UserAddresses).FirstOrDefault();
+            var addresses = customerAddresses.UserAddresses;
+            var addressesFull = addresses.ToList();
+            return View(addressesFull);
         }
 
         // GET: Addresses/Details/5

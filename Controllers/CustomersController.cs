@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -46,13 +47,14 @@ namespace TrashCollector3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerID,FirstName,LastName,CustomerEmail,CustomerPassword")] Customer customer)
+        public ActionResult Create([Bind(Include = "CustomerID,FirstName,LastName,CustomerEmail,CustomerPassword,UserID")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                customer.UserID = User.Identity.GetUserId();
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(customer);
