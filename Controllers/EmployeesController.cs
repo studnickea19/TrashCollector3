@@ -49,7 +49,7 @@ namespace TrashCollector3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeID,EmployeeFirstName,EmployeeLastName,AreaID,PickupID")] Employee employee)
+        public ActionResult Create([Bind(Include = "EmployeeID,EmployeeFirstName,EmployeeLastName,AreaID")] Employee employee)
         {
             if (ModelState.IsValid)
             {
