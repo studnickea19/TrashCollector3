@@ -52,7 +52,7 @@ namespace TrashCollector3.Controllers
             {
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                return RedirectToAction("Home");
+                return RedirectToAction("Index");
             }
 
             return View(customer);

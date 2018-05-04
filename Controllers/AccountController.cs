@@ -169,7 +169,19 @@ namespace TrashCollector3.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
-                    return RedirectToAction("Index", "Home");                    
+                    if(model.UserRoles.ToLower() == "customer")
+                    {
+                        return RedirectToAction("Create", "Customers");
+                    }
+                    else if(model.UserRoles.ToLower() == "employee")
+                    {
+                        return RedirectToAction("Create", "Employees");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                                     
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                           .ToList(), "Name", "Name");

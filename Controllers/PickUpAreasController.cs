@@ -46,7 +46,7 @@ namespace TrashCollector3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AreaID")] PickUpArea pickUpArea)
+        public ActionResult Create([Bind(Include = "AreaID,Zipcodes")] PickUpArea pickUpArea)
         {
             if (ModelState.IsValid)
             {

@@ -11,8 +11,9 @@ namespace TrashCollector3.Models
     {
         [Key]
         public int CustomerAddressID { get; set; }
-        public Address Address { get; set; }
 
-        public Customer Customer { get; set; }
+        public int AddressID { get; set; }
+
+        public int CustomerID { get;  set;}
     }
 }

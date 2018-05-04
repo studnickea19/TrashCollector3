@@ -5,40 +5,56 @@
 
 
 <h2>My Charges</h2>
+<p>
+    <a href="/Pickups/Create" class="btn btn-default">Create New Pickup</a>
+</p>
 
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Pickup.PickUpDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pickup.CustomerAddress.Address.FullAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChargeAmount)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
+@if (Model == null)
+{
+    <div class="row">
+        <div class="jumbotron2">
+            <h2>No charges to show.</h2>
+            <p class="lead">Click "Create New" to schedule a pickup.</p>
+        </div>
+    </div>
+}
+else
+{
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pickup.PickUpDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pickup.CustomerAddress.Address.FullAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChargeAmount)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ChargeID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ChargeID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ChargeID })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Pickup.PickUpDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pickup.CustomerAddress.Address.FullAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChargeAmount)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pickup.PickUpDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pickup.CustomerAddress.Address.FullAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChargeAmount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ChargeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ChargeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ChargeID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}

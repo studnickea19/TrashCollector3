@@ -1,7 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #D4EFDF  ;
+    background-color: #D4EFDF ;
+    border: 1px solid gray;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -29,4 +30,65 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+.jumbotron2 {
+  padding: 40px;
+  margin-bottom: 30px;
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #EBF5FB;
+}
+
+.jumbotron2 h1 {
+  line-height: 1;
+  color: inherit;
+  font-weight: 600;
+}
+
+.jumbotron2 p {
+  line-height: 1.4;
+}
+
+.container .jumbotron {
+  border-radius: 6px;
+}
+
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .container .jumbotron2 {
+    padding-right: 70px;
+    padding-left: 70px;
+  }
+  .jumbotron h1 {
+    font-size: 63px;
+  }
+}
+
+table{
+	width: 100%;
+	height: auto;
+	table-layout: fixed;
+	border: 1px solid grey;
+	overflow: scroll;
+}
+tr{
+	width: 50%;
+	height: 50px;
+	border: 1px solid grey;
+}
+td:hover{
+	background-color: #8b8b8b;
+	color: white;
+}
+td{
+	text-align: center;
+	padding: 10px;
+	border: 1px solid grey;
 }

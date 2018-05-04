@@ -32,7 +32,7 @@ namespace TrashCollector3.Models
 
         [Display(Name = "My Charges")]
         public List<Charge> Charges { get; set; }   //List of Charges
-
+        [Display(Name = "Full Name")]
         public string FullName
         {
             get

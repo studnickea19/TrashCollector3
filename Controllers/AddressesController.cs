@@ -46,11 +46,15 @@ namespace TrashCollector3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AddressID,StreetAddress,City,State,ZipCode")] Address address)
+        public ActionResult Create([Bind(Include = "AddressID,StreetAddress,City,State,ZipCode")] Address address, Customer customer)
         {
             if (ModelState.IsValid)
             {
                 db.Addresses.Add(address);
+                CustomerAddress addAddress = new CustomerAddress();
+                addAddress.AddressID = address.AddressID;
+                addAddress.CustomerID = customer.CustomerID;
+                db.CustomerAddresses.Add(addAddress);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

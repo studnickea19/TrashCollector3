@@ -3,60 +3,78 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Pickups</h2>
+<h2>My Pickups</h2>
 
 <p>
     <a href="/Pickups/Create" class="btn btn-default">Create New Pickup</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerAddress.Address.FullAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickUpDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickupCompleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickupSuspended)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OneTimePickup)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
+
+    
+
+    @if (Model == null)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerAddress.CustomerAddressID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PickUpArea.AreaID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PickUpDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PickupCompleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PickupSuspended)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OneTimePickup)
-            </td>
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.PickupID }) |*@
-                @Html.ActionLink("Details", "Details", new { id = item.PickupID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PickupID })
-            </td>
-        </tr>
+        <div class="row">
+            <div class="jumbotron2">
+                <h2>There are no pickups to show!</h2>
+                <p class="lead">Click "Create New" to schedule a pickup.</p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerAddress.Address.FullAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PickUpDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PickupCompleted)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PickupSuspended)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OneTimePickup)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerAddress.CustomerAddressID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PickUpArea.AreaID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PickUpDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PickupCompleted)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PickupSuspended)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OneTimePickup)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.PickupID }) |*@
+                        @Html.ActionLink("Details", "Details", new { id = item.PickupID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PickupID })
+                    </td>
+                </tr>
+
+            }
+        </table>
     }
 
-</table>
+        
 
 

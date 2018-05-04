@@ -71,33 +71,38 @@ namespace TrashCollector3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PickupID,CustomerAddressID,PickUpDate,AreaID,PickupCompleted,PickupSuspended,OneTimePickup")] Pickup pickup)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    pickup.PickupCompleted = false;
-            //    pickup.PickupSuspended = false;
-            //    db.Pickups.Add(pickup);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
+            if (ModelState.IsValid)
+            {
+                pickup.PickupCompleted = false;
+                var addressZip = db.Addresses.Where(a => a.AddressID == pickup.CustomerAddress.AddressID).Select(a => a.ZipCode).FirstOrDefault();
+                PickUpArea temp= db.PickUpAreas.Where(a => a.Zipcodes == addressZip).Single();
+                pickup.AreaID = temp.AreaID;
+                db.Pickups.Add(pickup);
+                db.SaveChanges();
+                return RedirectToAction("MyPickups", "PickupController");
+            }
 
             //ViewBag.CustomerAddressID = new SelectList(db.CustomerAddresses, "CustomerAddressID", "CustomerAddressID", pickup.CustomerAddressID);
             //ViewBag.AreaID = new SelectList(db.PickUpAreas, "AreaID", "AreaID", pickup.AreaID);
-            //return View(pickup);
-            if (pickup.PickupID == 0)              
-            {
-                db.Pickups.Add(pickup);   
-            }
-            else
-            {
-                var playerInDB = db.Pickups.Single(m => m.PickupID == pickup.PickupID); //
-                playerInDB.CustomerAddressID = pickup.CustomerAddressID;
-                playerInDB.PickUpDate = pickup.PickUpDate;
-                playerInDB.OneTimePickup = pickup.OneTimePickup;
-                playerInDB.PickupCompleted = false;
+            return View(pickup);
+            //if (pickup.PickupID < 0)              
+            //{
+            //    db.Pickups.Add(pickup);   
+            //}
+            //else
+            //{
                 
-            }
-            db.SaveChanges();
-            return RedirectToAction("MyPickups", "PickupController");
+            //    var pickupInDB = db.Pickups.Single(m => m.PickupID == pickup.PickupID); //
+            //    pickupInDB.CustomerAddress = pickup.CustomerAddress;
+            //    pickupInDB.PickUpDate = pickup.PickUpDate;
+            //    pickupInDB.PickUpArea = pickup.PickUpArea;
+            //    pickupInDB.PickupCompleted = false;
+            //    pickupInDB.PickupSuspended = false;
+            //    pickupInDB.OneTimePickup = pickup.OneTimePickup;
+                    
+            //}
+            //db.SaveChanges();
+            
         }
 
         // GET: Pickups/Edit/5
